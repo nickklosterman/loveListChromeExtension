@@ -3,10 +3,18 @@
   "name": "Lovelist Auto-Lover",
   "description":"Automagically love items for you.",
   "version":"1.0",
+  "options_ui":
+  {
+    "page":"options.html",
+    "chrome_style":true //false -> open in own tab; true -> open in overlay
+    
+  },
   
   "browser_action": {
     "old_default_icon": "125px-KarakoyunluFlag.png",
-    "default_icon": "icon.png",
+    "oldIcon":"icon.png",
+    "iconzz":"PinkHeart.png",
+    "default_icon": "WhiteHeart.png", 
     "default_popup": "popup.html",
     "default_title": "AutoMagic Love"
   }

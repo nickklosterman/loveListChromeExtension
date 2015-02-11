@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>AutoMagic LoveLister Options</title>
+  </head>
+  <body>
+    <div>Site Selection</div>
+    <select id="site" multiple="true">
+      <option value="test-005.lbidts.com">Test</option>
+      <option value="vsdpint.lbidts.com">Pint</option>
+      <option value="dev-005.lbidts.com">Dev</option>
+      <option value="local">Local</option>
+      <option value="www.victoriassecret.com">Production</option>
+    </select>
+    <div>
+    <label>IP Address <input type="textbox" value="local ip" id="ipAddr" /> </label>
+    </div>
+    
+    <div>
+    <label>Test Product Ids <input type="textbox" value="123456, 789012" id="testProductId" /> </label>
+    </div>
+    <div>
+    <label>Production Product Ids <input type="textbox" value="167345, 128899" id="productionProductId" /> </label>
+    </div>
+
+    <div>
+      <label>Clear List before Adding? <input type="checkbox" name="clearFirst" id="clear" /> </label>
+      </div>
+    <br />
+    <button id="saveOptions">Save</button>
+    <br />
+    <button id="eraseOptions">Restore default</button>
+    <br />
+    <button id="loadOptions">Load</button>
+    <script type="text/javascript" src="options.js"></script>
+  </body>
+  </html>
