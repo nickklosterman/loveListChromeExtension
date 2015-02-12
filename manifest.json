@@ -19,11 +19,11 @@
     "default_title": "AutoMagic Love"
   }
   ,
-  "permissions": [
-    "activeTab",
-    "cookies",
-    "http://*/*",
-    "https://*/*"
+    "permissions": [	
+	"activeTab",
+	"cookies",
+	"http://*/*",
+	"https://*/*"
 //    "*//*.victoriassecret.com/",
   //  "*//*.lbidts.com/",
    // "https://dev-005.lbidts.com"
