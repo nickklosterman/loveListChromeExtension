@@ -17,6 +17,9 @@ A Chrome extension to automagically add and clear items to your Victoria's Secre
 [Chrome Extension](https://developer.chrome.com/extensions/)
 [Chrome Extensions Developer's Guide](https://developer.chrome.com/extensions/devguide)
 [Chrome Extensions: Api : Cookies](https://developer.chrome.com/extensions/cookies)
+[Manifest File Format](https://developer.chrome.com/extensions/manifest)
+[Chrome Extensions](https://chrome.google.com/webstore/category/extensions)
+[Chrome Extension Options](https://developer.chrome.com/extensions/optionsV2)
 
 # Examples
 [Creating a Simple Chrome Extension](https://www.lullabot.com/blog/article/creating-simple-chrome-extension)

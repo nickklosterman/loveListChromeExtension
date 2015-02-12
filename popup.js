@@ -1,8 +1,6 @@
-
-
 function addToLoveList(){
-  var xhr= new XMLHttpRequest();
-  var productArray=[230316, 228684, 2];
+  var xhr = new XMLHttpRequest();
+  var productArray = [230316, 228684, 2];
   productArray = [212407, 212606, 226536];
 
   productArray.forEach(function(element,index,array){
@@ -11,15 +9,15 @@ function addToLoveList(){
     console.log(element+' ' +postData);
     //    $.post("https://www.victoriassecret.com/lovelist/item/heart", "productid="+element+"&ctlg=LJ&cqo=false&path=%2Fvictorias-secret-sport%2Fsports-bras%2Fseamless-reversible-sport-bra-victorias-secret-sport%3FProductID%3D221633%26CatalogueType%3DOLS")});
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    //xhr.setRequestHeader("Content-length", postData.length);
-    xhr.onreadystatechange = function() {//Call a function when the state changes.
+    //xhr.setRequestHeader("Content-length", postData.length); deprecated
+    xhr.onreadystatechange = function() { //Call a function when the state changes.
       if(xhr.readyState == 4 && xhr.status == 200) {
         console.log(xhr.responseText);
       }
     }
 
-//do I need a setTimeout call? copy 3 cURL calls to these products, put in a script and see if that works without a pause between calls. Time execution. 
-// Is it teh missing variables that screw things up?
+    //do I need a setTimeout call? copy 3 cURL calls to these products, put in a script and see if that works without a pause between calls. Time execution. 
+    // Is it teh missing variables that screw things up?
     xhr.send(postData);
   })
 };

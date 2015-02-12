@@ -3,6 +3,7 @@
     <title>AutoMagic LoveLister Options</title>
   </head>
   <body>
+    <div class="siteSelection">
     <div>Site Selection</div>
     <select id="site" multiple="true">
       <option value="test-005.lbidts.com">Test</option>
@@ -11,26 +12,38 @@
       <option value="local">Local</option>
       <option value="www.victoriassecret.com">Production</option>
     </select>
-    <div>
-    <label>IP Address <input type="textbox" value="local ip" id="ipAddr" /> </label>
+    </div>
+    <div class="address">
+      <label>IP Address <input type="textbox" value="local ip" id="ipAddr" /> </label>
+      <label>Port<input type="textbox" value="Port" id="port" /> </label>
     </div>
     
-    <div>
-    <label>Test Product Ids <input type="textbox" value="123456, 789012" id="testProductId" /> </label>
-    </div>
-    <div>
-    <label>Production Product Ids <input type="textbox" value="167345, 128899" id="productionProductId" /> </label>
-    </div>
-
-    <div>
-      <label>Clear List before Adding? <input type="checkbox" name="clearFirst" id="clear" /> </label>
+    <div class="productIds"><label>Product Ids</label>
+      <div>
+        <label>Test <input type="textbox" value="123456, 789012" id="testProductId" /> </label>
       </div>
+      <div>
+        <label>Production<input type="textbox" value="167345, 128899" id="productionProductId" /> </label>
+      </div>
+    </div>
+    
+    <div class="clearBeforeAddition">
+      <label>Clear List before Adding? <input type="checkbox" name="clearFirst" id="clear" /> </label>
+    </div>
     <br />
+    <div class="buttons">
     <button id="saveOptions">Save</button>
-    <br />
+    <span id="errorBanner"></span>
+    
     <button id="eraseOptions">Restore default</button>
-    <br />
+    
     <button id="loadOptions">Load</button>
+    </div>
+    <div class="buttons">
+    <button id="autoLoveList">Love</button>
+        
+    <button id="clearLoveList">Clear</button>
+    </div>
     <script type="text/javascript" src="options.js"></script>
   </body>
-  </html>
+</html>
