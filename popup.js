@@ -2,7 +2,7 @@ function addToLoveList(){
     var xhr = new XMLHttpRequest();
     var productArray = [230316, 228684, 2];
     productArray = [212407, 226536,221475,221349,90647,221819,221444,221440,225919,221370,227153,226284,226286,221777,221781,229071,228154,225585];
-    var interval = 2750;
+    var interval = 100;
     productArray.forEach(function(element,index,array){
 	setTimeout(function(element){
 	    xhr.open('POST','https://www.victoriassecret.com/lovelist/item/heart',true);
@@ -13,14 +13,17 @@ function addToLoveList(){
 	    xhr.onreadystatechange = function() { //Call a function when the state changes.
 		if(xhr.readyState == 4 && xhr.status == 200) {
 		    console.log(xhr.responseText);
+		    var xhrRT = JSON.parse(xhr.responseText);
+		    document.getElementById('count').textContent = xhrRT.count;
+		    document.getElementById('unavailableCount').textContent = xhrRT.unavailableCount;
+		} else {
+		    console.log(xhr)
 		}
 	    };
-
-	    //do I need a setTimeout call? copy 3 cURL calls to these products, put in a script and see if that works without a pause between calls. Time execution. 
-	    // Is it the missing variables that screw things up?
 	    xhr.send(postData);
-	},interval*index,element); // the back end handling this is atrocious and can't handle things hitting it this quickly. Super Shitty performance. It simply can't handle the requests coming in super fast. I still need to test with curl and see if I get the same results. 
+	},interval*index,element); 
     });
+    //may want to turn this off if the user isn't on the loveliste page they probably don't want the page reloaded for them?
     setTimeout(function() { chrome.tabs.reload();},interval*productArray.length); //reload the tab when all  posts are done.
     //chrome.tabs.create({'url':'https://www.victoriassecret.com/lovelist/view'}); this works but in a way breaks the debugger
     /*,
