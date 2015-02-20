@@ -1,12 +1,23 @@
 function addToLoveList(){
+  var site = ["www.victoriassecret.com", "10.7.19.134","10.7.35.134"];
+site.forEach(function(element,index,arrary) {
+addToLoveList2(element);
+
+});
+}
+function addToLoveList2(site){
     var xhr = new XMLHttpRequest();
     var productArray = [230316, 228684, 2];
     productArray = [212407, 226536,221475,221349,90647,221819,221444,221440,225919,221370,227153,226284,226286,221777,221781,229071,228154,225585];
+productArray = [145949 ];
     var interval = 100;
     productArray.forEach(function(element,index,array){
 	setTimeout(function(element){
-	    xhr.open('POST','https://www.victoriassecret.com/lovelist/item/heart',true);
-	    var postData="productid="+element+"&ctlg=LJ&cqo=false&path=%2F";
+	  //xhr.open('POST','https://www.victoriassecret.com/lovelist/item/heart',true);
+          //xhr.open('POST','https://'+site+'dev-005.lbidts.com/lovelist/item/heart',true);
+          xhr.open('POST','https://'+site+'/lovelist/item/heart',true);
+	    var postData="productid="+element+"&ctlg=LJ&cqo=false&path=";
+//postData="productid="+element+"&ctlg=VF&cqo=false&path="; //vf catalog for dev
 	    console.log(element+' ' +postData);
 	    // ????? wtf I thought it needed the UID and other info to be passed? or is this being handled automagically since we are on the VS site?	    
 	    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

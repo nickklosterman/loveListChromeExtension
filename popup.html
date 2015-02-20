@@ -28,8 +28,8 @@
   <body>
     <div id="cookieContent"></div>
     <div id="siteSelection"></div>
-<label>Lovelist Count</label>    <div id="count">Count</div>
-<label>Lovelist Unavailable Count</label>  <div id="unavailableCount">UnavailableCount</div>
+    <label>Lovelist Count</label>    <div id="count">Count</div>
+    <label>Lovelist Unavailable Count</label>  <div id="unavailableCount">UnavailableCount</div>
     <div></div>
 <!--     <label> Clear List prior to addition? <input type="checkbox" value="true" /> </label> -->
         <div class="buttons">
@@ -39,6 +39,50 @@
 	</div>
 	<label>I think you shouldn't close the extension until it is done and the page reloads.</label>
 	<script src="popup.js"></script> <!-- script must be after all needed html -->
+        <hr>
+            <div class="siteSelection">
+    <div>Site Selection</div>
+    <select id="site" multiple="true">
+      <option value="10.7.19.134 test-005.lbidts.com">Test</option>
+      <option value="vsdpint.lbidts.com">Pint</option>
+      <option value="10.7.35.134 dev-005.lbidts.com">Dev</option>
+      <option value="local">Local</option>
+      <option value="www.victoriassecret.com">Production</option>
+    </select>
+    </div>
+    <div class="address">
+      <label>IP Address <input type="textbox" value="local ip" id="ipAddr" /> </label>
+      <label>Port<input type="textbox" value="Port" id="port" /> </label>
+    </div>
+    
+    <div class="productIds"><label>Product Ids</label>
+      <div>
+        <label>Test <input type="textbox" value="123456, 789012" id="testProductId" /> </label>
+      </div>
+      <div>
+        <label>Production<input type="textbox" value="167345, 128899" id="productionProductId" /> </label>
+      </div>
+    </div>
+    
+    <div class="clearBeforeAddition">
+      <label>Clear List before Adding? <input type="checkbox" name="clearFirst" id="clear" /> </label>
+    </div>
+    <br />
+    <div class="buttons">
+    <button id="saveOptions">Save</button>
+    <span id="errorBanner"></span>
+    
+    <button id="eraseOptions">Restore default</button>
+    
+    <button id="loadOptions">Load</button>
+    </div>
+    <div class="buttons">
+    <button id="autoLoveList">Love</button>
+        
+    <button id="clearLoveList">Clear</button>
+    </div>
+    <script type="text/javascript" src="options.js"></script>
+
   </body>
 </html>
 
