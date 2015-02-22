@@ -7,7 +7,9 @@
 <html>
   <head>
     <title>Getting Started Extension's Popup</title>
-    <style>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+      
+      <style>
       #status {
         /* avoid an excessively wide status text */
         white-space: pre;
@@ -26,6 +28,7 @@
 
   </head>
   <body>
+
     <div id="cookieContent"></div>
     <div id="siteSelection"></div>
     <label>Lovelist Count</label>    <div id="count">Count</div>
@@ -37,7 +40,7 @@
        
     <button id="clearLoveList">Clear</button>
 	</div>
-	<label>I think you shouldn't close the extension until it is done and the page reloads.</label>
+	<label>The extension will halt execution when it is closed even if there are still things running. Therefore you should let the extension run until it is done and the page reloads.</label>
 	<script src="popup.js"></script> <!-- script must be after all needed html -->
         <hr>
             <div class="siteSelection">
@@ -81,7 +84,10 @@
         
     <button id="clearLoveList">Clear</button>
     </div>
-    <script type="text/javascript" src="options.js"></script>
+    <hr>
+        <button id="vs">VS</button>
+	<script type="text/javascript" src="options.js"></script>
+	<script type="text/javascript" src="productIds.js"></script>
 
   </body>
 </html>

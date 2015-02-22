@@ -116,6 +116,3 @@ document.getElementById('clearLoveList').addEventListener('click',clearLoveList)
 // chrome.tabs.create({'url':'popup.html'});
 // };
 
-
-// document.getElementById("someID").onclick = function () {   };
-
