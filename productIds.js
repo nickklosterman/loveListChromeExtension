@@ -52,13 +52,20 @@ function parseProduct(res) {
 	};
     });
    productArray.forEach(function(ele,ind,arr) {
-       //console.log(ele.replace(/^.*data-product-id/,'{product-id').replace(/ data-item-id.*/,'}').replace(/data-/g,'').replace(/love-list-service="heart"/,'').replace(/="/g,':"').replace(/" /g,'",'));
-       arr[ind]=ele.replace(/^.*data-product-id/,'{product-id').replace(/ data-item-id.*/,'}').replace(/data-/g,'').replace(/love-list-service="heart"/,'').replace(/="/g,':"').replace(/" /g,'", ');
+     //this code transforms a string like this:
+     //  <a title="Love It" class="loveItIcon" data-product-id="230059" data-product-catalog="LK" data-product-path="/bras/shop-all-bras/push-up-bra-so-obsessed-by-victorias-secret?ProductID=230059&amp;CatalogueType=OLS" data-love-list-service="heart" data-category-id="SHOP ALL BRAS AA - DDD(BRAS/SHOP-ALL-BRAS)" data-item-id="332186"> <em></em> </a>
+// to an object like this:
+//{product-id: "230059", product-catalog: "LK", product-path: "/bras/shop-all-bras/push-up-bra-so-obsessed-by-victorias-secret?ProductID=230059&amp;CatalogueType=OLS", category-id: "SHOP ALL BRAS AA - DDD(BRAS/SHOP-ALL-BRAS)", product-name: "push-up-bra-so-obsessed-by-victorias-secret"}
+
+     var eleObj = ele.replace(/^.*data-product-id/,'{"product-id').replace(/ data-item-id.*/,'}').replace(/data-/g,'').replace(/love-list-service="heart" /,'').replace(/="/g,'":"').replace(/" /g,'", ').replace(/\r/,'').replace(/, /g,', "');
+     eleObj = JSON.parse(eleObj);
+     var shortProductName=((eleObj["product-path"]).split('/'));
+     eleObj['product-name'] = (shortProductName[shortProductName.length-1]).replace(/\?.*/,'');
+     arr[ind]=eleObj; 
    });
     productArray.forEach(function(ele,ind,arr){
-	console.log(ele);
+      console.log(ele);
     })
-
 };
 
 /*
