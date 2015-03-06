@@ -1,5 +1,8 @@
+
 function addToLoveList(){
-  var site = ["www.victoriassecret.com", "10.7.19.134","10.7.35.134"];
+  var site = ["www.victoriassecret.com", "10.7.19.134","10.7.35.134","localhost:8080", "test-005.lbidts.com", "dev-005.lbidts.com"];
+  //site = ["test-005.lbidts.com"];
+  //site = ["localhost:8080"];
   site.forEach(function(element,index,arrary) {
     addToLoveList2(element);
 
@@ -16,28 +19,36 @@ function getProductArray(site) {
     break;
     case "10.7.19.134":
     case "10.7.35.134":
-    productArray =  [230316, 228684,145949 ];
+    case "test-005.lbidts.com":
+    case "dev-005.lbidts.com":
+//    productArray =  [230316, 228684,145949 ];
+    productArray =  [230316, 228684,145949,153955, 74839,151825,150577 ];
     break;
-    default:
-    productArray = [];
+    default: //assume localhost
+    productArray =  [230316, 228684,145949,153955, 74839,151825,150577 ];
     break;
   }
   return productArray;
 };
 
 function getCatalogCode(site) {
+  var code;
   switch (site)
   {
     case "www.victoriassecret.com":
-    return "LJ";
+    code = "LL";//LJ";
     break;
     case "10.7.19.134":
     case "10.7.35.134":
-    return "VF"; 
-    default:
-    return "LJ";
+    case "test-005.lbidts.com":
+    case "dev-005.lbidts.com":
+    code = "VF";
+    break;
+    default: //assume localhost
+    code = "VF";
     break;
   }
+  return code;
 };
 
 
@@ -88,13 +99,34 @@ var clearSite={
   "pint":"https://vsdpint.lbidts.com"
 };
 
+var clearSiteArray = [
+  "www.victoriassecret.com",
+  "test-005.lbidts.com",
+  "dev-005.lbidts.com",
+  "vsdpint.lbidts.com"
+
+];
+
 //use a heart with a minus or the red circle with diagonal as a symbol to unheart.
 function clearLoveList(cookieObject) {
-  cookieObject.site="www.victoriassecret.com";
-  var xhr = new XMLHttpRequest();
-  //    xhr.open('GET', 'https://'+cookieObject.site+'/lovelist/remove/all');
-  xhr.open('GET', 'https://www.victoriassecret.com/lovelist/remove/all');
-  xhr.send();
+  clearSiteArray.forEach( function(ele,ind,arr) {
+    //cookieObject.site=ele;//"www.victoriassecret.com";
+    var xhr = new XMLHttpRequest();
+    //xhr.open('GET', 'https://'+cookieObject.site+'/lovelist/remove/all');
+    xhr.open('GET', 'https://'+ele+'/lovelist/remove/all');
+    //  xhr.open('GET', 'https://www.victoriassecret.com/lovelist/remove/all');
+    xhr.onreadystatechange = function() {
+      if(xhr.readyState == 4 && xhr.status == 200) {
+	console.log(xhr.responseText);
+	var xhrRT = JSON.parse(xhr.responseText);
+	document.getElementById('count').textContent = xhrRT.count;
+	document.getElementById('unavailableCount').textContent = xhrRT.unavailableCount;
+      } else {
+	console.log(xhr)
+      }
+    };
+    xhr.send();
+  });
   chrome.tabs.reload();
 };
 

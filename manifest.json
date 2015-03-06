@@ -25,7 +25,8 @@
 	"http://*/*",
 	"https://*/*"
 //    "*//*.victoriassecret.com/",
-  //  "*//*.lbidts.com/",
+      //  "*//*.lbidts.com/",
+     "https://*.lbidts.com/*",
    // "https://dev-005.lbidts.com"
     //"https://ajax.googleapis.com/",
     //"cookies" // ,    "https://test-005.lbidts.com"
