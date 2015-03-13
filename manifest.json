@@ -23,14 +23,11 @@
 	"activeTab",
 	"cookies",
 	"http://*/*",
-      "https://*/*",
-//    "*//*.victoriassecret.com/",
-      //  "*//*.lbidts.com/",
+	"https://*/*",
+// can I get rid of the above two permission urls?
+        "https://*.victoriassecret.com/*",
+	"https://localhost*",
      "https://*.lbidts.com/*"
-   // "https://dev-005.lbidts.com"
-    //"https://ajax.googleapis.com/",
-    //"cookies" // ,    "https://test-005.lbidts.com"
-    //  "*://*.victoriassecret.com"
   ]
 }
 
