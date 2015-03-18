@@ -5,29 +5,40 @@
   "version":"1.0",
   "options_ui":
   {
-    "page":"options.html",
+    "page":"html/options.html",
     "chrome_style":true //false -> open in own tab; true -> open in overlay
     
   },
   
-  "browser_action": {
-    "old_default_icon": "125px-KarakoyunluFlag.png",
-    "oldIcon":"icon.png",
-    "iconzz":"PinkHeart.png",
-    "default_icon": "WhiteHeart.png", 
-    "default_popup": "popup.html",
+  //  "browser_action": {
+  "page_action": {
+    "iconzz":"img/PinkHeart.png",
+    "default_icon": "img/WhiteHeart.png", 
+    "default_popup": "html/popup.html",
     "default_title": "AutoMagic Love"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.lbidts.com/*", "https://*.victoriassecret.com/*"],
+      "js":      ["js/popup.js"],
+      "css":     ["scss/style.css"]
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "cookies",
+    //	"http://*/*",
+    //	"https://*/*",
+    // can I get rid of the above two permission urls?
+    "https://*.victoriassecret.com/*",
+    //"https://localhost*",
+    "https://*.lbidts.com/*"
+  ],
+  "icons":{
+    "16":"img/WhiteHeart.png",
+    "48":"img/PinkHeart48.png",
+    "128":"img/PinkHeart128.png"
   }
-  ,
-    "permissions": [	
-	"activeTab",
-	"cookies",
-	"http://*/*",
-	"https://*/*",
-// can I get rid of the above two permission urls?
-        "https://*.victoriassecret.com/*",
-	"https://localhost*",
-     "https://*.lbidts.com/*"
-  ]
 }
 
