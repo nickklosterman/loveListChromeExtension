@@ -4,9 +4,12 @@ chrome.runtime.onInstalled.addListener(function() {
     // With a new rule ...
     chrome.declarativeContent.onPageChanged.addRules([
       {
-        // That fires when a page's URL contains a 'g' ...
+        // That fires when we are on a VS dev page ...
         conditions: [
 
+          new chrome.declarativeContent.PageStateMatcher({
+            pageUrl: { hostSuffix: '.victoriassecret.com', schemes: ['https'] }
+          }),
           new chrome.declarativeContent.PageStateMatcher({
             pageUrl: { hostContains: "dev-", hostSuffix: '.lbidts.com', schemes: ['https'] }
           }),
@@ -16,12 +19,10 @@ chrome.runtime.onInstalled.addListener(function() {
           new chrome.declarativeContent.PageStateMatcher({
             pageUrl: { hostContains: "vsdpint.", hostSuffix: '.lbidts.com', schemes: ['https'] }
           })
-/*,
-
-          new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { urlContains: 'g' },
-          })
-*/
+/*
+        new chrome.declarativeContent.PageStateMatcher({
+            pageUrl: { urlContains: '.lbidts.com' }
+          })*/
         ],
         // And shows the extension's page action.
         actions: [ new chrome.declarativeContent.ShowPageAction() ]
@@ -30,10 +31,3 @@ chrome.runtime.onInstalled.addListener(function() {
   });
 });
 
-/*
- * Inject our script into the desired matching pages.
- */
-chrome.tabs.onUpdated.addListener(function(id, info, tab){
-  chrome.pageAction.show(tab.id);
-  chrome.tabs.executeScript(null, {"file": "popup.js"});
-});

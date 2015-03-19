@@ -9,40 +9,27 @@
     "chrome_style":true //false -> open in own tab; true -> open in overlay
     
   },
-    "background": {
+  "background": {
     "scripts": ["js/background.js"],
     "persistent": false
-    },
-
-  //change from browser_action to page_action script
-  //  "browser_action": {
+  },
   "page_action": {
-    "iconzz":"img/PinkHeart.png",
-    "default_icon": "img/WhiteHeart.png", 
+    "iconzz":        "img/PinkHeart.png",
+    "default_icon":  "img/WhiteHeart.png", 
     "default_popup": "html/popup.html",
     "default_title": "AutoMagic Love"
   },
-  "content_scripts": [
-    {
-      "matches": ["https://*.lbidts.com/*", "https://*.victoriassecret.com/*"],
-      "js":      ["js/popup.js"],
-      "css":     ["scss/style.css"]
-    }
-  ],
   "permissions": [
+    "declarativeContent",
     "tabs",
     "activeTab",
     "cookies",
-    //	"http://*/*",
-    //	"https://*/*",
-    // can I get rid of the above two permission urls?
     "https://*.victoriassecret.com/*",
-    //"https://localhost*",
     "https://*.lbidts.com/*"
   ],
   "icons":{
-    "16":"img/WhiteHeart.png",
-    "48":"img/PinkHeart48.png",
+    "16": "img/WhiteHeart.png",
+    "48": "img/PinkHeart48.png",
     "128":"img/PinkHeart128.png"
   }
 }
