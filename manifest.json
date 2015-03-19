@@ -9,7 +9,12 @@
     "chrome_style":true //false -> open in own tab; true -> open in overlay
     
   },
-  
+    "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+    },
+
+  //change from browser_action to page_action script
   //  "browser_action": {
   "page_action": {
     "iconzz":"img/PinkHeart.png",

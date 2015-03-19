@@ -7,7 +7,7 @@ A Chrome extension to automagically add and clear items to your Victoria's Secre
 3. Select `More Tools->Extensions` or open a new tab and navigate to `chrome://extensions`
 4. At the top click the `Load unpacked extension...` button
 5. Navigate to the repo and select the folder.
-6. The Extension will appear in the extensios list
+6. The extension will appear in the extensions list
 
 
 # Useful links
@@ -38,5 +38,5 @@ A Chrome extension to automagically add and clear items to your Victoria's Secre
 1. Load the Extension if it isn't already running.
 2. Go to the Extensions page `chrome://extensions` and make sure the page is in Developer mode. The option is at the top right of the `chrome://extensions` page.
 3. Right click on the Extension Icon in Chrome's chrome.
-4. Select `Inspect popup`
-5. If `Inspect popup` doesn't seem to work to launch the debugger, try right-clicking and `Inspect Element` on the popup of the Extension. 
+4. Select `Inspect Popup`
+5. If `Inspect Popup` doesn't seem to work to launch the debugger, try right-clicking and `Inspect Element` on the popup of the Extension. 

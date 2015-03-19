@@ -191,28 +191,3 @@ document.getElementById('clearLoveList').addEventListener('click',clearLoveList)
 // function showPopup() { //why does this open a billion tabs? I think bc it is executed once per tab that we already have open
 // chrome.tabs.create({'url':'popup.html'});
 // };
-
-var chrome = window.chrome;
-
-chrome.runtime.onInstalled.addListener(function() {
-  'use strict';
-  chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-    chrome.declarativeContent.onPageChanged.addRules([{
-      conditions: [
-        // When a page is a VSD dev page                                                                                                                                                                  
-        new chrome.declarativeContent.PageStateMatcher({
-          pageUrl: { hostContains: "dev-", hostSuffix: '.lbidts.com', schemes: ['https'] }
-        }),
-        new chrome.declarativeContent.PageStateMatcher({
-          pageUrl: { hostContains: "test-", hostSuffix: '.lbidts.com', schemes: ['https'] }
-        }),
-        new chrome.declarativeContent.PageStateMatcher({
-          pageUrl: { hostContains: "vsdpint.", hostSuffix: '.lbidts.com', schemes: ['https'] }
-        })
-      ],
-      // ... show the page action.
-alert("bob");
-      actions: [new chrome.declarativeContent.ShowPageAction() ]
-    }]);
-  });
-});
