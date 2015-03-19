@@ -56,7 +56,7 @@ function addToLoveList2(site){
     var xhr = new XMLHttpRequest();
     var productArray = getProductArray(site);
     var catalogCode = getCatalogCode(site);
-    var interval = 100;
+  var interval = 100;
     productArray.forEach(function(element,index,array){
 	setTimeout(function(element){
 	    //xhr.open('POST','https://www.victoriassecret.com/lovelist/item/heart',true);
