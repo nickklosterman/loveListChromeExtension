@@ -19,10 +19,6 @@ chrome.runtime.onInstalled.addListener(function() {
           new chrome.declarativeContent.PageStateMatcher({
             pageUrl: { hostContains: "vsdpint.", hostSuffix: '.lbidts.com', schemes: ['https'] }
           })
-/*
-        new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { urlContains: '.lbidts.com' }
-          })*/
         ],
         // And shows the extension's page action.
         actions: [ new chrome.declarativeContent.ShowPageAction() ]

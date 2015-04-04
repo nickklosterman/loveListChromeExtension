@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--
     This page is shown when the extension button is clicked, because the
-    "browser_action" field in manifest.json contains the "default_popup" key with
-    value "popup.html".
+    "page_action" field in manifest.json contains the "default_popup" key with
+    value "html/popup.html".
   -->
 <html>
   <head>
@@ -46,16 +46,16 @@
     <div class="siteSelection">
       <div>Site Selection</div>
       <select id="site" multiple="true">
-        <option value="10.7.19.134 test-005.lbidts.com">Test</option>
+        <option alt-value="10.7.19.134" value="test-005.lbidts.com">Test</option>
+        <option alt-value="10.7.35.134" value="dev-005.lbidts.com">Dev</option>
         <option value="vsdpint.lbidts.com">Pint</option>
-        <option value="10.7.35.134 dev-005.lbidts.com">Dev</option>
         <option value="local">Local</option>
         <option value="www.victoriassecret.com">Production</option>
       </select>
     </div>
     <div class="address">
       <label>IP Address <input type="textbox" value="local ip" id="ipAddr" /> </label>
-      <label>Port<input type="textbox" value="Port" id="port" /> </label>
+      <label>Port<input type="textbox" value="8080" id="port" /> </label>
     </div>
     
     <div class="productIds"><label>Product Ids</label>
@@ -66,11 +66,23 @@
         <label>Production<input type="textbox" value="167345, 128899" id="productionProductId" /> </label>
       </div>
     </div>
+
+    <div class="catalogCode"><label>Catalog Code</label>
+      <div>
+        <label>Test Dev Pint <input type="textbox" value="VF" id="testCatalogCode" /> </label>
+      </div>
+      <div>
+        <label>Production<input type="textbox" value="LM" id="productionCatalogCode" /> </label>
+      </div>
+    </div>
     
     <div class="clearBeforeAddition">
-      <label>Clear List before Adding? <input type="checkbox" name="clearFirst" id="clear" /> </label>
+      <label>Clear List before Adding? <input type="checkbox" name="clearFirst" id="clearBeforeAddition" /> </label>
     </div>
+
     <br />
+
+    
     <div class="buttons">
       <button id="saveOptions">Save</button>
       <span id="errorBanner"></span>
@@ -87,8 +99,8 @@
     </div>
     <hr>
     <button id="vs">VS</button>
-    <script type="text/javascript" src="options.js"></script>
-    <script type="text/javascript" src="productIds.js"></script>
+    <script type="text/javascript" src="../js/options.js"></script>
+    <script type="text/javascript" src="../js/productIds.js"></script>
 
   </body>
 </html>

@@ -32,7 +32,7 @@ function loadIPAddressFromLocalStorage(){
 
 function loadClearBeforeAdditionFromLocalStorage(){
     var clearBeforeAddition = localStorage["clearBeforeAddition"] || false,
-    clearSelect = document.getElementById("clear");
+    clearSelect = document.getElementById("clearBeforeAddition");
     
     clearSelect.checked = clearBeforeAddition;
 }
@@ -188,13 +188,16 @@ function checkIsIPV4(entry) {
     return false;
 }
 
-function autoLoveList() {
+/*
+ 
+ function autoLoveList() {
     document.getElementById("errorBanner").textContent="auto";
 }
 
 function clearLoveList() {
     document.getElementById("errorBanner").textContent="clear";
 }
+*/
 
 function getSiteSelectionFromDOM() {
     var site = document.getElementById("site"),

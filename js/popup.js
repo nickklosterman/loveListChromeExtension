@@ -3,9 +3,21 @@ function addToLoveList(){
     var site = ["www.victoriassecret.com", "10.7.19.134","10.7.35.134","localhost:8080", "test-005.lbidts.com", "dev-005.lbidts.com"];
     //site = ["test-005.lbidts.com"];
     //site = ["localhost:8080"];
-    site.forEach(function(element,index,arrary) {
-	addToLoveList2(element);
-    });
+  if (getClearListBeforeAdding()===true) {
+    clearLoveList();
+  }
+  var tempSiteSelection = getSiteSelectionFromDOM();
+
+  if (tempSiteSelection.length > 0 && Array.isArray(tempSiteSelection))
+  {
+    site = tempSiteSelection;
+  }
+
+  site.forEach(function(element,index,arrary) {
+    addToLoveList2(element);
+  });
+
+
 }
 
 //instead of using these switch statements I could just create objects that have the properties that I need.
@@ -35,7 +47,7 @@ function getCatalogCode(site) {
     switch (site)
     {
     case "www.victoriassecret.com":
-	code = "LL";//LJ";
+	code = "LL";//LJ"; LM is current as of 2015/03/19
 	break;
     case "10.7.19.134":
     case "10.7.35.134":
@@ -56,7 +68,7 @@ function addToLoveList2(site){
     var xhr = new XMLHttpRequest();
     var productArray = getProductArray(site);
     var catalogCode = getCatalogCode(site);
-    var interval = 100;
+    var interval = 150;
     productArray.forEach(function(element,index,array){
 	setTimeout(function(element){
 	    //xhr.open('POST','https://www.victoriassecret.com/lovelist/item/heart',true);
@@ -82,13 +94,6 @@ function addToLoveList2(site){
     });
     //may want to turn this off if the user isn't on the loveliste page they probably don't want the page reloaded for them?
     setTimeout(function() { chrome.tabs.reload();},interval*productArray.length); //reload the tab when all  posts are done.
-    //chrome.tabs.create({'url':'https://www.victoriassecret.com/lovelist/view'}); this works but in a way breaks the debugger
-    /*,
-      function( tab) {
-      console.log(tab)
-      }
-      };
-    */
 };
 
 var clearSite={
@@ -108,6 +113,12 @@ var clearSiteArray = [
 
 //use a heart with a minus or the red circle with diagonal as a symbol to unheart.
 function clearLoveList(cookieObject) {
+  var tempCSA = getSiteSelectionFromDOM();
+
+if (tempCSA.length > 0 && Array.isArray(tempCSA))
+  {
+    clearSiteArray = tempCSA;
+  }
     clearSiteArray.forEach( function(ele,ind,arr) {
 	//cookieObject.site=ele;//"www.victoriassecret.com";
 	var xhr = new XMLHttpRequest();
@@ -174,6 +185,12 @@ function getCookie(target) {
     });
     console.log(myObj);
     return myObj;
+};
+
+function getClearListBeforeAdding() {
+ //var rValue = document.getElementById('clearBeforeAddition').value === "on" ? true : false;
+//var bob = document.getElementById('clearBeforeAddition');
+return document.getElementById('clearBeforeAddition').checked;
 };
 
 document.addEventListener('DOMContentLoaded', function() {
