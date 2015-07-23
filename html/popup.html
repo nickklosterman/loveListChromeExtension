@@ -8,7 +8,9 @@
   <head>
     <title>Getting Started Extension's Popup</title>
     <link rel="stylesheet" type="text/css" href="../scss/style.css" />
-    
+<!-- http://davidwalsh.name/css-circles 
+https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+ -->    
     <style>
       #status {
       /* avoid an excessively wide status text */
@@ -17,6 +19,41 @@
       overflow: hidden;
       max-width: 400px;
       }
+
+      .circ {
+      display:inline-block;
+      border-radius:50%;
+      width: 20px;
+      height: 20px;
+      }
+
+      .unknown {
+      background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
+      background-image: -webkit-radial-gradient(45px 45px, circle cover, darkgrey, grey);
+      background-image: radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
+      }
+      .down {
+      background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
+      background-image: -webkit-radial-gradient(45px 45px, circle cover, crimson, red);
+      background-image: radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
+      }
+      .unavailable {
+      background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
+      background-image: -webkit-radial-gradient(45px 45px, circle cover, orange, yellow);
+      background-image: radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
+      }
+      .partiallyUp {
+      background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
+      background-image: -webkit-radial-gradient(45px 45px, circle cover, red, yellow);
+      background-image: radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
+      }
+
+      .up {
+      background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
+      background-image: -webkit-radial-gradient(45px 45px, circle cover, green, lime);
+      background-image: radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
+      }
+      
     </style>
 
     <!--
@@ -41,7 +78,7 @@
       <button id="clearLoveList">Clear</button>
     </div>
     <label>The extension will halt execution when it is closed even if there are still things running. Therefore you should let the extension run until it is done and the page reloads.</label>
-    <script src="../js/popup.js"></script> <!-- script must be after all needed html -->
+
     <hr>
     <div class="siteSelection">
       <div>Site Selection</div>
@@ -99,9 +136,15 @@
     </div>
     <hr>
     <button id="vs">VS</button>
+    <hr>
+    <button id="status">Status</button>
+    <div id="test">Test<div id="test-glyph" class="circ unknown"></div></div>
+    <div id="dev">Dev<div id="dev-glyph" class="circ unknown"></div></div>
+    <div id="pint">VSDPInt<div id="pint-glyph" class="circ unknown"></div></div>
+    
+    <script src="../js/popup.js"></script> <!-- script must be after all needed html -->
     <script type="text/javascript" src="../js/options.js"></script>
     <script type="text/javascript" src="../js/productIds.js"></script>
-
   </body>
 </html>
 

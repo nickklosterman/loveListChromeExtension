@@ -205,6 +205,125 @@ document.addEventListener('DOMContentLoaded', function() {
 document.getElementById('autoLoveList').onclick = addToLoveList; //addEventListener('click',addToLoveList);
 document.getElementById('clearLoveList').addEventListener('click',clearLoveList);
 
+function ajaxSuccess(){
+    
+    var errorFlag = false
+    ele={id:"bob"};
+    if (this.responseText.indexOf("Service Unavailable")>0){
+	console.log(ele.id+" is unavailable.");
+	errorFlag = true;
+    }
+    if (this.responseText.indexOf("HTTP ERROR 500")>0){
+	console.log(ele.id+" is borked.");
+	errorFlag = true;
+    }
+    if (!errorFlag) {
+	console.log(ele.id+" is kicking ass.");
+    }
+};
+
+function checkSiteStatus() {
+
+    //add in a spinner for updates 
+    var siteArray = [{id:"dev",url:"https://dev-005.lbidts.com"},
+		     {id:"test",url:"https://test-005.lbidts.com"},
+		     {id:"pint",url:"https://vsdpint.lbidts.com"}],
+	interval=25; //use an interval and space out the xhr so we don't hammer the site.
+    siteArray.forEach(function(ele,ind,arr){
+	setTimeout(function(ele) {
+	    var xhr = new XMLHttpRequest();
+	    xhr.open('GET',ele.url,true);
+	    //xhr.onload = ajaxSuccess;
+	    xhr.onreadystatechange = function() {
+		var errorFlag = false,
+		    status="unknown";
+		// state 4 = the request is complete; the other states are less useful
+		if (xhr.readyState == 4) {
+		    //		    console.log(ele.id+': response.body'+xhr.responseText);
+
+		    //check response code instead.
+		    if ( xhr.status !== 200) {
+			if (xhr.status === 500) { // responseText.indexOf("HTTP ERROR 500")>0){
+			    console.log(ele.id+" is borked.");
+			    message=ele.id+" is b0rked.";
+			    status="down"
+			    errorFlag = true;
+			}
+			//The Service Unavailable serves up a 500, so we'll overwrite when its 500 but gives the Service Unavailable message instead of the pure http error 500 message with the stack trace
+			if (xhr.responseText.indexOf("<h2>Service Unavailable</h2>")>0){
+			    console.log(ele.id+" is unavailable.");
+			    message=ele.id+" is unavailable (build in progress).";
+			    status="unavailable";
+			    errorFlag = true;
+			}
+
+		    } else {
+
+			//check that the global.js, wrapper.css, home.css is loading as a proxy for a check on checking that not just the html page but also the libraries are also being loaded.
+			
+			var searchTerm = "global.js",
+			    globalLocation = xhr.responseText.indexOf(searchTerm),
+			    xhr2 = new XMLHttpRequest(),
+			    url_,url,
+			    re = /<script src=\".*script\/base\/global.js\"><\/script>/;
+
+			startpos=xhr.responseText.search(re);
+			if (startpos > 0) {
+			    //global.js = 9 chars long
+			    url_ = xhr.responseText.substr(startpos, globalLocation+searchTerm.length-startpos);
+			    //			    url.replace("<script src=","https:");//
+			    //url.replace("script","https:");
+			     url = url_.replace(/<script src="/,"https:");
+			    //url.replace(/script/,"https:",i);
+			    xhr2.open('GET',url,true);
+			    xhr2.onreadystatechange = function() {
+				if (xhr2.readyState == 4 ) {
+				    if (xhr2.status === 200) { //use switch statement instead?
+					document.getElementById(iconEle).className="circ up";
+				    } else if (xhr2.status === 400) {
+					document.getElementById(iconEle).className="circ partiallyUp";
+				    }
+				}
+			    };
+			}
+
+		    
+			xhr2.send();
+			
+			status="up";
+			console.log(ele.id+" is kicking ass.");
+			message=ele.id+" is kicking ass.";
+		    }
+		    //		    document.getElementById(ele.id).textContent= message;
+		    var iconEle = ele.id+"-glyph";
+
+		    //http://stackoverflow.com/questions/195951/change-an-elements-class-with-javascript
+		    //		    document.getElementById(iconEle).classList.add(status);
+		    document.getElementById(iconEle).className="circ "+status;
+			
+		}
+
+	    };
+	    xhr.send();
+	},interval*ind,ele)
+    });
+
+    
+}
+
+document.getElementById('status').onclick = checkSiteStatus;
+
+//http://stackoverflow.com/questions/799981/document-ready-equivalent-without-jquery
+document.addEventListener("DOMContentLoaded", function(event) {
+//check status on startup
+    checkSiteStatus();
+});
+
+
 // function showPopup() { //why does this open a billion tabs? I think bc it is executed once per tab that we already have open
 // chrome.tabs.create({'url':'popup.html'});
 // };
+
+//https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
+//if wanted to make it standalone icon use https://developer.chrome.com/extensions/browserAction#event-onClicked browser action instead of pageaction
+//http://stackoverflow.com/questions/2227062/how-do-i-move-a-git-branch-out-into-its-own-repository move branch to own repo

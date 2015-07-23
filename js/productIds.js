@@ -360,6 +360,7 @@ var menuArray = ['https://www.victoriassecret.com/bras/dream-angels']; //test ar
 ,'https://www.victoriassecret.com/sale/clearance-pink'
 ,'https://www.victoriassecret.com/sale/gift-card']
 */
+    menuArray = ['https://www.victoriassecret.com/swimwear/itsy'];
   //    console.log(menuArray.length);
   menuArray.forEach(function(ele,ind,arr) {
     //	console.log(ele.replace(/^.*href="/,'').replace(/".*/,''));
