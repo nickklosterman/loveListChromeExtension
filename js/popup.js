@@ -224,10 +224,12 @@ function ajaxSuccess(){
 
 function checkSiteStatus() {
 
-    //add in a spinner for updates 
+    //add in a spinner for updates ; the id is used ot match the id in the DOM it matches the id and the glyph id
     var siteArray = [{id:"dev",url:"https://dev-005.lbidts.com"},
 		     {id:"test",url:"https://test-005.lbidts.com"},
-		     {id:"pint",url:"https://vsdpint.lbidts.com"}],
+		     {id:"pint",url:"https://vsdpint.lbidts.com"},
+		     {id:"proofing",url:"https://proofing.lbidts.com"}
+		    ],
 	interval=25; //use an interval and space out the xhr so we don't hammer the site.
     siteArray.forEach(function(ele,ind,arr){
 	setTimeout(function(ele) {
@@ -243,11 +245,20 @@ function checkSiteStatus() {
 
 		    //check response code instead.
 		    if ( xhr.status !== 200) {
-			if (xhr.status === 500) { // responseText.indexOf("HTTP ERROR 500")>0){
+			switch (xhr.status) {
+			case 500:
 			    console.log(ele.id+" is borked.");
 			    message=ele.id+" is b0rked.";
-			    status="down"
+			    status="down";
 			    errorFlag = true;
+
+			    break;
+			case 403:
+			    console.log(ele.id+" is returning an access denied message.");
+			    message=ele.id+" is returning an access denied message.";
+			status="unavailable";
+			    break;
+
 			}
 			//The Service Unavailable serves up a 500, so we'll overwrite when its 500 but gives the Service Unavailable message instead of the pure http error 500 message with the stack trace
 			if (xhr.responseText.indexOf("<h2>Service Unavailable</h2>")>0){
