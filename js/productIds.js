@@ -123,7 +123,7 @@ imageURL= temp
 
         //assume that if an alt image that it needs the file extension and the baseImageURI
         if (imageURL.indexOf(imageFileExtension) === -1) {
-          var temp ="wget -nc https:"+baseImageURI+imageURL+imageFileExtension;
+          var temp ="wget -nc --no-check-certificate https:"+baseImageURI+imageURL+imageFileExtension;
           imageURL=temp;
         } else {
           temp = imageURL.replace(/^/,'wget -nc https:');
@@ -360,7 +360,7 @@ var menuArray = ['https://www.victoriassecret.com/bras/dream-angels']; //test ar
 ,'https://www.victoriassecret.com/sale/clearance-pink'
 ,'https://www.victoriassecret.com/sale/gift-card']
 */
-    menuArray = ['https://www.victoriassecret.com/swimwear/itsy'];
+    menuArray = ['https://www.victoriassecret.com/lingerie/very-sexy'];
   //    console.log(menuArray.length);
   menuArray.forEach(function(ele,ind,arr) {
     //	console.log(ele.replace(/^.*href="/,'').replace(/".*/,''));
