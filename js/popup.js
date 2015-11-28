@@ -194,8 +194,8 @@ return document.getElementById('clearBeforeAddition').checked;
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("get cookie");
-    var cookieData=getCookie("cookieContent");
+  //  console.log("get cookie");
+//    var cookieData=getCookie("cookieContent");
     //clearLoveList(cookieData);
     //addToLoveList();
     //showPopup();

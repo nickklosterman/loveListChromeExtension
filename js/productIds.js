@@ -12,37 +12,45 @@ function getVS(){
   
   var xhr = new XMLHttpRequest();
   var interval = 100;
-  xhr.open('GET',urlBase,false);
-  xhr.send(null);
-
+    xhr.open('GET',urlBase,true);
+    xhr.onload = function(e) {
+//https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests
   if (xhr.status === 200) {
     //	console.log("200");
     //	console.log(xhr.responseText);
-    /*var menu =*/ parseMenu(xhr.responseText);
-    /* why is this even being called? I'm calling parseProduct from within parseMenu
-       if (typeof menu === 'Array')  {
-       menu.forEach(function(ele,ind,arr) {
-       XHRGet(ele,parseProduct);
-       });
-       } else {
-       console.log("nope not array; GD Async nature");
-       };
-     */
+   parseMenu(xhr.responseText);
+   
   } else {
     console.log('blah');
   }
+	
+    }
+    xhr.onerror = function (e) {
+	console.error(xhr.statusText);
+    }
+  xhr.send(null);
   
 };
 function XHRGet(url,callback){
   var xhr = new XMLHttpRequest();
-  xhr.open('GET',url,false);
-  xhr.send(null);
-
+    xhr.open('GET',url,true);
+    xhr.onload = function(e) {
+//https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests
   if (xhr.status === 200) {
-    callback(xhr.responseText); 
+    //	console.log("200");
+    //	console.log(xhr.responseText);
+   callback(xhr.responseText);
+   
   } else {
     console.log('XHRGet failed on '+url);
   }
+	
+    }
+    xhr.onerror = function (e) {
+	console.error(xhr.statusText);
+    }
+    
+  xhr.send(null);
   
 };
 /*
@@ -360,7 +368,9 @@ var menuArray = ['https://www.victoriassecret.com/bras/dream-angels']; //test ar
 ,'https://www.victoriassecret.com/sale/clearance-pink'
 ,'https://www.victoriassecret.com/sale/gift-card']
 */
-    menuArray = ['https://www.victoriassecret.com/lingerie/very-sexy'];
+    //    menuArray = ['https://www.victoriassecret.com/lingerie/very-sexy'];
+//    menuArray = ['https://dev-005.lbidts.com/bras/so-obsessed']; :( no workie
+    menuArray = ['https://www.victoriassecret.com/lingerie/dream-angels'];
   //    console.log(menuArray.length);
   menuArray.forEach(function(ele,ind,arr) {
     //	console.log(ele.replace(/^.*href="/,'').replace(/".*/,''));
